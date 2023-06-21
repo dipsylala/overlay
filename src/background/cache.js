@@ -4,7 +4,7 @@ const SECOND = 1000;
 const MINUTE = 60 * SECOND;
 
 const _cache = new LRUCache({
-  max: 500,
+  max: 1,
   ttl: 15 * MINUTE,
 });
 

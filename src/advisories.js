@@ -3,6 +3,7 @@ const advisories = {
   depsDev: 'OpenSSF Scorecard',
   socket: 'Socket',
   debricked: 'Debricked',
+  veracode: 'Veracode',
 };
 export default advisories;
 

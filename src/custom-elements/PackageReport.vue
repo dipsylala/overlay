@@ -64,6 +64,7 @@ import OpenExternalLink from '../assets/open-extenal-link.svg?component';
 import PythonLogo from '../assets/python-logo.svg?component';
 import ScorecardsLogo from '../assets/scorecards-logo.svg?component';
 import SnykLogo from '../assets/snyk-logo.svg?component';
+import VeracodeLogo from '../assets/veracode-logo.svg?component';
 import SocketLogo from '../assets/socket-logo.svg?component';
 import { usePackageInfo } from './store';
 
@@ -77,6 +78,7 @@ const logos = {
   depsDev: ScorecardsLogo,
   socket: SocketLogo,
   debricked: DebrickedLogo,
+  veracode: VeracodeLogo,
 };
 
 export default defineComponent({

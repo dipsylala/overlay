@@ -2,7 +2,13 @@
   "name": "Overlay",
   "version": "{{EXTENSION_VERSION}}",
   "description": "{{EXTENSION_DESCRIPTION}}",
-  "host_permissions": ["https://deps.dev/*", "https://debricked.com/*", "https://socket.dev/*", "https://snyk.io/*"],
+  "host_permissions": [
+    "https://deps.dev/*",
+    "https://debricked.com/*",
+    "https://socket.dev/*",
+    "https://snyk.io/*",
+    "https://api.sourceclear.com/*"
+  ],
   "icons": {
     "48": "icons/icon_48.png"
   },
