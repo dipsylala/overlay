@@ -17,8 +17,7 @@ const scrapeScoreFromVeracode = (registry, packageName) =>
     const issues = topResult?._vulnCount;
     const fullLatestVersion = topResult?.model?.versions[0];
     const latestReleaseVersion = fullLatestVersion?.version;
-    const license = fullLatestVersion?.licenseInfoModels?.map((v) => v.name).join(',');
-
+    const license = fullLatestVersion?.licenseInfoModels?.map((v) => v.name ?? (v.license.startsWith('BSD') ? 'BSD' : v.license)).join(',');
     const description = `Latest Version: ${latestReleaseVersion}, License: ${license}`;
 
     return {
