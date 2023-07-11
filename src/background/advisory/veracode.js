@@ -13,7 +13,13 @@ const scrapeScoreFromVeracode = (registry, packageName) =>
     console.log(topResult);
     const lidId = `lid-${topResult.model.id}`;
 
-    const packageUrl = `https://www.sourceclear.com/vulnerability-database/libraries/react/javascript/${registry}/${lidId}/summary`;
+    const scPackageName = topResult.model.name;
+    let scLanguage = topResult.model.language.languageType;
+    if (scLanguage === 'JS') {
+      scLanguage = 'javascript';
+    }
+
+    const packageUrl = `https://www.sourceclear.com/vulnerability-database/libraries/${scPackageName}/${scLanguage}/${registry}/${lidId}/summary`;
     const issues = topResult?._vulnCount;
     const fullLatestVersion = topResult?.model?.versions[0];
     const latestReleaseVersion = fullLatestVersion?.version;
