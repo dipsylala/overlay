@@ -3,10 +3,15 @@ import cache from '../cache';
 
 const scrapeScoreFromVeracode = (registry, packageName) =>
   cache(['veracode', registry, packageName], async () => {
-    const resultsJson = await fetch(`https://api.sourceclear.com/catalog/search?q=${packageName}%20source%3A${registry}%20type%3Alibrary`, {
-      method: 'GET',
-      redirect: 'follow',
-    }).then((r) => r.json());
+    const resultsJson = await fetch(
+      `https://api.sourceclear.com/catalog/search?q=%22${encodeURIComponent(packageName)}%22%20source%3A${encodeURIComponent(
+        registry
+      )}%20type%3Alibrary`,
+      {
+        method: 'GET',
+        redirect: 'follow',
+      }
+    ).then((r) => r.json());
 
     const topResult = resultsJson?.contents[0];
 
@@ -14,7 +19,7 @@ const scrapeScoreFromVeracode = (registry, packageName) =>
     const lidId = `lid-${topResult.model.id}`;
 
     const scPackageName = topResult.model.name;
-    let scLanguage = topResult.model.language.languageType;
+    let scLanguage = topResult.model.languageType;
     if (scLanguage === 'JS') {
       scLanguage = 'javascript';
     }
