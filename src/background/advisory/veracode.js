@@ -1,4 +1,3 @@
-// https://snyk.io/advisor/npm-package/react
 import cache from '../cache';
 
 const scrapeScoreFromVeracode = (registry, packageName) =>
@@ -24,7 +23,7 @@ const scrapeScoreFromVeracode = (registry, packageName) =>
       scLanguage = 'javascript';
     }
 
-    const packageUrl = `https://www.sourceclear.com/vulnerability-database/libraries/${scPackageName}/${scLanguage}/${registry}/${lidId}/summary`;
+    const packageUrl = `https://sca.analysiscenter.veracode.com/vulnerability-database/libraries/${scPackageName}/${scLanguage}/${registry}/${lidId}/summary`;
     const issues = topResult?._vulnCount;
     const fullLatestVersion = topResult?.model?.versions[0];
     const latestReleaseVersion = fullLatestVersion?.version;
