@@ -57,6 +57,7 @@ export default {
           },
           snyk: {
             issues: 1,
+
             data: {
               score: 79,
               maxScore: 100,
@@ -91,6 +92,12 @@ export default {
                 level: 'WARNING',
               },
             },
+          },
+          veracode: {
+            issues: 1,
+            summary: 'test summary',
+            reportUrl: 'https://www.veracode.com',
+            data: {},
           },
         },
         latest: '8.0.0',
