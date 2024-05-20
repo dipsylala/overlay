@@ -12,20 +12,24 @@ const scrapeScoreFromVeracode = (registry, packageName) =>
       }
     ).then((r) => r.json());
 
-    const topResult = resultsJson?.contents[0];
+    // The first result does not always match the package name exactly,
+    // so we need to check the name against the list
+    const bestResult = resultsJson.contents.find((result) => result.model.name === packageName);
 
-    console.log(topResult);
-    const lidId = `lid-${topResult.model.id}`;
+    console.log(bestResult);
+    const lidId = `lid-${bestResult.model.id}`;
 
-    const scPackageName = topResult.model.name;
-    let scLanguage = topResult.model.languageType;
+    var scPackageName = bestResult.model.name;
+    let scLanguage = bestResult.model.languageType;
     if (scLanguage === 'JS') {
       scLanguage = 'javascript';
+      // Angular names will include '@' and '/' - for example `@angular/cli`
+      scPackageName = scPackageName.replaceAll('@', '').replaceAll('/', '-');
     }
 
     const packageUrl = `https://sca.analysiscenter.veracode.com/vulnerability-database/libraries/${scPackageName}/${scLanguage}/${registry}/${lidId}/summary`;
-    const issues = topResult?._vulnCount;
-    const fullLatestVersion = topResult?.model?.versions[0];
+    const issues = bestResult?._vulnCount;
+    const fullLatestVersion = bestResult?.model?.versions[0];
     const latestReleaseVersion = fullLatestVersion?.version;
     const license = fullLatestVersion?.licenseInfoModels?.map((v) => v.name ?? (v.license.startsWith('BSD') ? 'BSD' : v.license)).join(',');
     const description = `Latest Version: ${latestReleaseVersion}, License: ${license}`;
